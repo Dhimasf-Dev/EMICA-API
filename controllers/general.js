@@ -44,13 +44,14 @@ export const getProvince = async(req, res) => {
 export const getCity = async(req, res) => {
   // #swagger.tags = ['General']
   try {
-    id = req.params.id;
-    state_id = req.params.state_id;
+    let id = req.params.id;
+    let state_id = req.params.state_id;
     //console.log(req.cookies);
     let s_category = req.body.category;
     let s_key = req.body.key;
     let SQL = "";
 
+    console.log(state_id)
 
     if (isNaN(id)) 
                 {
@@ -63,26 +64,26 @@ export const getCity = async(req, res) => {
     {
       if (state_id==0)
       {
-        SQL ="select a.id as city_id,a.x_city_code as city_code,a.name as city_name,a.state_id,b.code as state_code,b.name as state_name from res_city a inner join res_country_state b on a.state_id=b.id where 1=1;";  
+        SQL ="select a.id as city_id,a.x_city_code as city_code,a.name as city_name,a.state_id, b.code as state_code,b.name as state_name,a.x_area_id as area_id,c.name as area_name from res_city a inner join res_country_state b on a.state_id=b.id left join x_city_area c on a.x_area_id = c.id where 1=1;";  
       }
       else
       {
        // SQL ="select a.id as city_id,a.x_city_code as city_code,a.name as city_name,a.state_id from res_city a where a.state_id="+state_id+";";  
-           SQL ="select a.id as city_id,a.x_city_code as city_code,a.name as city_name,a.state_id,b.code as state_code,b.name as state_name from res_city a inner join res_country_state b on a.state_id=b.id where a.state_id="+state_id+";";  
+           SQL ="select a.id as city_id,a.x_city_code as city_code,a.name as city_name,a.state_id,b.code as state_code,b.name as state_name,a.x_area_id as area_id,c.name as area_name from res_city a inner join res_country_state b on a.state_id=b.id left join x_city_area c on a.x_area_id = c.id where a.state_id="+state_id+";";  
      
       }
     }
     else
     {
         
-        SQL ="select a.id as city_id,a.x_city_code as city_code,a.name as city_name,a.state_id,b.code as state_code,b.name as state_name from res_city a inner join res_country_state b on a.state_id=b.id where a.id="+id+";";  
+        SQL ="select a.id as city_id,a.x_city_code as city_code,a.name as city_name,a.state_id,b.code as state_code,b.name as state_name,a.x_area_id as area_id,c.name as area_name from res_city a inner join res_country_state b on a.state_id=b.id left join x_city_area c on a.x_area_id = c.id where a.id="+id+";";  
        
     }
     console.log(SQL);
     let ecs = await client.query(SQL, function(err,data) {
 
       if(!err) {
-            res.json(data.rows);
+            res.json(data.rows[0].area_id ? data.rows : {msg : "Outside dealer coverage area"});
         } else {
           console.log(err);
       }

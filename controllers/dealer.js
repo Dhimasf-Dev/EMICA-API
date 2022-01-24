@@ -2,7 +2,7 @@ import client from "../config/config-pg.js";
 import shape from 'shape-json';
 
 
-export const getDefaulDealer = async(req, res) => {
+export const getDefaultDealer = async(req, res) => {
     // #swagger.tags = ['General']
     
     try {

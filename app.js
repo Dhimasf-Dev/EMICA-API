@@ -457,7 +457,7 @@ app.get('/api/v1/customer/list-deliveryaddress/:id', verifyToken,async function 
                           return;
                         }
 
-                         SQL ="select a.id as contact_id,a.type,a.name,a.email,a.phone,a.mobile,a.street,a.street2,a.zip,a.city_id,b.name as city_name,c.name as state_name,"+
+                         SQL ="select a.id as contact_id,a.type,a.name,a.email,a.phone,a.mobile,a.street,a.street2,a.zip,a.city_id,a.x_area_id,b.name as city_name,c.name as state_name,"+
                          "d.name as country_name,'SAME AS ID' as label from res_partner a left outer join res_city b on a.city_id=b.id "+
                           "left outer join res_country_state c on a.state_id=c.id left outer join res_country d on a.country_id=d.id "+
                           "where a.id="+id+" union all select a.id as contact_id,a.type,a.name,a.email,a.phone,a.mobile,a.street,a.street2,a.zip,a.city_id,b.name as city_name,"+
@@ -1334,7 +1334,6 @@ app.post('/api/v1/invoice/payment-cancel-timeout', verifyToken,async function (r
 
 
 
-
 app.post('/api/v1/invoice/payment', verifyToken,async function (req, res) {  
   jwt.verify(req.token, 'secretkey', async function (err, authData) {
     if(err) {
@@ -1476,7 +1475,6 @@ app.post('/api/v1/invoice/payment', verifyToken,async function (req, res) {
 });
 
 
-
 app.post('/api/v1/saleorder/voucher-redeem', verifyToken,async function (req, res) {  
   jwt.verify(req.token, 'secretkey', async function (err, authData) {
     if(err) {
@@ -1575,8 +1573,6 @@ app.post('/api/v0/saleorder/create', verifyToken,async function (req, res) {
     }
   });
 });
-
-
 
 
 app.post('/api/v3/saleorder/create', verifyToken,async function (req, res) {  
@@ -1838,8 +1834,6 @@ app.post('/api/v3/saleorder/create', verifyToken,async function (req, res) {
 });
 
 
-
-
 app.post('/api/v1/saleorder/set-paymentmethod', verifyToken,async function (req, res) {  
   jwt.verify(req.token, 'secretkey', async function (err, authData) {
     if(err) {
@@ -1985,7 +1979,6 @@ app.post('/api/v1/saleorder/set-paymentmethod', verifyToken,async function (req,
     }
   });
 });
-
 
 
 app.post('/api/v4/saleorder/create', verifyToken,async function (req, res) {  
@@ -2300,7 +2293,6 @@ app.post('/api/v4/saleorder/create', verifyToken,async function (req, res) {
     }
   });
 });
-
 
 
 app.post('/api/v2/saleorder/create', verifyToken,async function (req, res) {  
@@ -2800,7 +2792,6 @@ app.post('/api/v1/booking-testdrive/send-confirmation-email', verifyToken,async 
 });
 
 
-
 app.post('/api/v1/res-partner/ktp-image', verifyToken,async function (req, res) {  
   jwt.verify(req.token, 'secretkey', async function (err, authData) {
     if(err) {
@@ -3203,7 +3194,6 @@ app.get('/api/v1/sales/voucher-list/:dealer_id', verifyToken,async function (req
 });
 
 
-
 app.get('/api/v1/sales/stockonhand-permodel/:company_id/:product_code', verifyToken,async function (req, res) {  
   jwt.verify(req.token, 'secretkey', async function (err, authData) {
     if(err) {
@@ -3393,7 +3383,6 @@ app.get('/api/v1/product/stock-per-productmodel/:dealer_id/:product_model_code',
 });
 
 
-
 app.get('/api/v1/product/stockonhand/:dealer_id/:product_code', verifyToken,async function (req, res) {  
   jwt.verify(req.token, 'secretkey', async function (err, authData) {
     if(err) {
@@ -3447,7 +3436,6 @@ app.get('/api/v1/product/stockonhand/:dealer_id/:product_code', verifyToken,asyn
 });
 
 
-
 app.get('/api/v1/product/product-template/:dealer_id/:product_template_code', verifyToken,async function (req, res) {  
   jwt.verify(req.token, 'secretkey', async function (err, authData) {
     if(err) {
@@ -3489,7 +3477,6 @@ app.get('/api/v1/product/product-template/:dealer_id/:product_template_code', ve
     }
   });
 });
-
 
 
 app.get('/api/v1/product/pricelist-producttemplate/:dealer_id/:product_template_code', verifyToken,async function (req, res) {  
@@ -3546,7 +3533,6 @@ app.get('/api/v1/product/pricelist-producttemplate/:dealer_id/:product_template_
     }
   });
 });
-
 
 
 app.get('/api/v0/product/pricelist-producttemplate/:dealer_id/:product_template_id', verifyToken,async function (req, res) {  
@@ -3696,7 +3682,6 @@ app.get('/api/v0/product/pricelist-producttemplate/:dealer_id/:product_template_
     }
   });
 });
-
 
 
 app.get('/api/v1/pricelist-productmodel/:dealer_id/:product_model_id', verifyToken,async function (req, res) {  
@@ -3928,7 +3913,6 @@ app.get('/api/v1/dealer/:type/:id', verifyToken,async function (req, res) {
 });
 
 
-
 app.get('/api/v1/ec/:id', verifyToken,async function (req, res) {  
   jwt.verify(req.token, 'secretkey', async function (err, authData) {
     if(err) {
@@ -3982,6 +3966,7 @@ app.get('/api/v1/ec/:id', verifyToken,async function (req, res) {
     }
   });
 });
+
 
 app.get('/api/v1/booking-testdrive/ec-ev-available/:start_date/:end_date', verifyToken,async function (req, res) {  
   jwt.verify(req.token, 'secretkey', async function (err, authData) {
@@ -4160,6 +4145,7 @@ app.get('/api/v1/testdrive-product/:id', verifyToken,async function (req, res) {
   });
 });
 
+
 app.get('/api/v1/bookingtype/:id', verifyToken,async function (req, res) {  
   jwt.verify(req.token, 'secretkey', async function (err, authData) {
     if(err) {
@@ -4210,645 +4196,649 @@ app.get('/api/v1/bookingtype/:id', verifyToken,async function (req, res) {
 });
 
 
-app.get('/api/v1/city/:id/:state_id', verifyToken,async function (req, res) {  
-  jwt.verify(req.token, 'secretkey', async function (err, authData) {
-    if(err) {
-      res.sendStatus(403);
-    } else {
+// app.get('/api/v1/city/:id/:state_id', verifyToken,async function (req, res) {  
+//   jwt.verify(req.token, 'secretkey', async function (err, authData) {
+//     if(err) {
+//       res.sendStatus(403);
+//     } else {
       
-        try {
-            id = req.params.id;
-            state_id = req.params.state_id;
-            //console.log(req.cookies);
-            let s_category = req.body.category;
-            let s_key = req.body.key;
-            let SQL = "";
+//         try {
+//             id = req.params.id;
+//             state_id = req.params.state_id;
+//             //console.log(req.cookies);
+//             let s_category = req.body.category;
+//             let s_key = req.body.key;
+//             let SQL = "";
 
 
-            if (isNaN(id)) 
-                        {
-                          res.status(500).json({error: 'Error'});
-                          return;
-                        }
+//             if (isNaN(id)) 
+//                         {
+//                           res.status(500).json({error: 'Error'});
+//                           return;
+//                         }
 
 
-            if (id==0)
-            {
-              if (state_id==0)
-              {
-                SQL ="select a.id as city_id,a.x_city_code as city_code,a.name as city_name,a.state_id,b.code as state_code,b.name as state_name from res_city a inner join res_country_state b on a.state_id=b.id where 1=1;";  
-              }
-              else
-              {
-               // SQL ="select a.id as city_id,a.x_city_code as city_code,a.name as city_name,a.state_id from res_city a where a.state_id="+state_id+";";  
-                   SQL ="select a.id as city_id,a.x_city_code as city_code,a.name as city_name,a.state_id,b.code as state_code,b.name as state_name from res_city a inner join res_country_state b on a.state_id=b.id where a.state_id="+state_id+";";  
+//             if (id==0)
+//             {
+//               if (state_id==0)
+//               {
+//                 SQL ="select a.id as city_id,a.x_city_code as city_code,a.name as city_name,a.state_id,b.code as state_code, a.state_id,a.x_area_id,b.name as state_name from res_city a inner join res_country_state b on a.state_id=b.id where 1=1;";  
+//               }
+//               else
+//               {
+//                // SQL ="select a.id as city_id,a.x_city_code as city_code,a.name as city_name,a.state_id from res_city a where a.state_id="+state_id+";";  
+//                    SQL ="select a.id as city_id,a.x_city_code as city_code,a.name as city_name,a.state_id,a.x_area_id,b.code as state_code,b.name as state_name from res_city a inner join res_country_state b on a.state_id=b.id where a.state_id="+state_id+";";  
              
-              }
-            }
-            else
-            {
+//               }
+//             }
+//             else
+//             {
                 
-                SQL ="select a.id as city_id,a.x_city_code as city_code,a.name as city_name,a.state_id,b.code as state_code,b.name as state_name from res_city a inner join res_country_state b on a.state_id=b.id where a.id="+id+";";  
+//                 SQL ="select a.id as city_id,a.x_city_code as city_code,a.name as city_name,a.state_id,a.x_area_id,b.code as state_code,b.name as state_name from res_city a inner join res_country_state b on a.state_id=b.id where a.id="+id+";";  
                
-            }
-            console.log(SQL);
-            let ecs = await client.query(SQL, function(err,data) {
+//             }
+//             console.log(SQL);
+//             let ecs = await client.query(SQL, function(err,data) {
 
-              if(!err) {
-                    res.json(data.rows);
-                } else {
-                  console.log(err);
-              }
+//               if(!err) {
+//                     res.json(data.rows);
 
-            });
-            } catch (error) {
-              res.status(500).json({error: error.message});
-            }
+//                     if(isNaN (res.x_area_id)){
+//                       res.json({msg: "outside dealer coverage area"})
+//                     }
+//                 } else {
+//                   console.log(err);
+//               }
+
+//             });
+//             } catch (error) {
+//               res.status(500).json({error: error.message});
+//             }
   
     
-    }
-  });
-});
+//     }
+//   });
+// });
 
 
-app.get('/api/v1/province/:id', verifyToken,async function (req, res) {  
-  jwt.verify(req.token, 'secretkey', async function (err, authData) {
-    if(err) {
-      res.sendStatus(403);
-    } else {
+// app.get('/api/v1/province/:id', verifyToken,async function (req, res) {  
+//   jwt.verify(req.token, 'secretkey', async function (err, authData) {
+//     if(err) {
+//       res.sendStatus(403);
+//     } else {
       
-        try {
-            id = req.params.id;
-            //console.log(req.cookies);
-            let s_category = req.body.category;
-            let s_key = req.body.key;
-            let SQL = "";
+//         try {
+//             id = req.params.id;
+//             //console.log(req.cookies);
+//             let s_category = req.body.category;
+//             let s_key = req.body.key;
+//             let SQL = "";
 
 
-            if (isNaN(id)) 
-                        {
-                          res.status(500).json({error: 'Error'});
-                          return;
-                        }
+//             if (isNaN(id)) 
+//                         {
+//                           res.status(500).json({error: 'Error'});
+//                           return;
+//                         }
 
 
-            if (id==0)
-            {
-               SQL ="select a.id as province_id,a.name as province_name from res_country_state a where a.country_id=100;";  
+//             if (id==0)
+//             {
+//                SQL ="select a.id as province_id,a.name as province_name from res_country_state a where a.country_id=100;";  
             
-            }
-            else
-            {
-               SQL ="select a.id as province_id,a.name as province_name from res_country_state a where a.country_id=100 and a.id="+id+";";  
+//             }
+//             else
+//             {
+//                SQL ="select a.id as province_id,a.name as province_name from res_country_state a where a.country_id=100 and a.id="+id+";";  
 
-            }
-            console.log(SQL);
-            let ecs = await client.query(SQL, function(err,data) {
+//             }
+//             console.log(SQL);
+//             let ecs = await client.query(SQL, function(err,data) {
 
-              if(!err) {
-                    res.json(data.rows);
-                } else {
-                  console.log(err);
-              }
+//               if(!err) {
+//                     res.json(data.rows);
+//                 } else {
+//                   console.log(err);
+//               }
 
-            });
-            } catch (error) {
-              res.status(500).json({error: error.message});
-            }
+//             });
+//             } catch (error) {
+//               res.status(500).json({error: error.message});
+//             }
   
     
-    }
-  });
-});
+//     }
+//   });
+// });
 
 
 
-app.get('/api/v2/booking-testdrive/get-available-timeslot/:appointment_type_id_param/:product_id_param/:ec_id_param/:start_date_param/:end_date_param', verifyToken,async function (req, res) {  
-  jwt.verify(req.token, 'secretkey', async function (err, authData) {
-    if(err) {
-      res.sendStatus(403);
-    } else {
+// app.get('/api/v2/booking-testdrive/get-available-timeslot/:appointment_type_id_param/:product_id_param/:ec_id_param/:start_date_param/:end_date_param', verifyToken,async function (req, res) {  
+//   jwt.verify(req.token, 'secretkey', async function (err, authData) {
+//     if(err) {
+//       res.sendStatus(403);
+//     } else {
       
-        try {
-            appointment_type_id_param = req.params.appointment_type_id_param;
-            start_date_param = req.params.start_date_param;
-            end_date_param = req.params.end_date_param;
-            ec_id_param = req.params.ec_id_param;
-            product_id_param = req.params.product_id_param;
+//         try {
+//             appointment_type_id_param = req.params.appointment_type_id_param;
+//             start_date_param = req.params.start_date_param;
+//             end_date_param = req.params.end_date_param;
+//             ec_id_param = req.params.ec_id_param;
+//             product_id_param = req.params.product_id_param;
             
 
 
-            if (isNaN(ec_id_param)) 
-                        {
-                          res.status(500).json({error: 'Error'});
-                          return;
-                        }
+//             if (isNaN(ec_id_param)) 
+//                         {
+//                           res.status(500).json({error: 'Error'});
+//                           return;
+//                         }
 
 
-            //console.log(req.cookies);
-            let s_category = req.body.category;
-            let s_key = req.body.key;
-            let SQL = "";
-            let SQL1 = "";
+//             //console.log(req.cookies);
+//             let s_category = req.body.category;
+//             let s_key = req.body.key;
+//             let SQL = "";
+//             let SQL1 = "";
 
-            SQL1 = "UPDATE slot_of_time SET is_active=false WHERE start_time < now() and is_active=true";
-            let ecs1 = await client.query(SQL1);
+//             SQL1 = "UPDATE slot_of_time SET is_active=false WHERE start_time < now() and is_active=true";
+//             let ecs1 = await client.query(SQL1);
 
-            FORMAT_ISO = 'YYYY-MM-DD"T"HH24:MI:SS"+07:00';
-            SQL="select a.start_time_iso,a.end_time_iso,a.combination,a.appointment_type_name,a.appointment_type_id,a.end_time,a.start_time,a.booking_date,a.product_id,a.product_name,a.ec_name,a.ec_id,"+
-                "sum(a.count_true) as jml,sum(a.count_false) as jml_false from (select CONCAT(z.name,'-',d.name,'-',e.name,'-',to_char(a.slot_date,'YYYY-MM-DD')) as combination,z.name as appointment_type_name,a.em_appointment_system_id,b.appointment_type_id,a.is_active as "+
-                "is_active_slot_time,to_char(a.end_time,'HH24:SS') as end_time,to_char(a.start_time,'HH24:SS') as start_time,"+
-                "to_char(a.end_time,'"+FORMAT_ISO+"') as end_time_iso,to_char(a.start_time,'"+FORMAT_ISO+"') as start_time_iso,"+
-                "a.id as slot_of_time_id,to_char(a.slot_date,'YYYY-MM-DD') as booking_date,e.id as product_id,e.name as product_name,"+
-                "d.name as ec_name,d.id as ec_id,case when a.is_active=true then 1 else 0 end as count_true,case when a.is_active=false then 1 else 0 end as count_false from slot_of_time a inner join x_emiproductschedule b on a.productschedule_id=b.id "+
-                "inner join res_company c on b.company_id=c.id inner join designation_designation d on b.designation_id=d.id "+
-                "inner join x_emiproduct e on b.x_emiproduct_id=e.id inner join appointment_type f on b.appointment_type_id=f.id "+
-                "inner join appointment_type z on b.appointment_type_id=z.id"+
-                " where e.id="+product_id_param+" and d.id="+ec_id_param+" and a.slot_date between '"+start_date_param+"' and '"+end_date_param+"' "+
-                //"and b.appointment_type_id="+appointment_type_id_param+" and a.is_active=true and b.is_active=true"+
-                "and b.appointment_type_id="+appointment_type_id_param+" and b.is_active=true"+
-                ") a group by a.start_time_iso,a.end_time_iso,a.combination,a.appointment_type_name,a.appointment_type_id,a.end_time,a.start_time,a.booking_date, a.product_id,a.product_name,a.ec_name,a.ec_id order by a.start_time;"
-            console.log(SQL);
+//             FORMAT_ISO = 'YYYY-MM-DD"T"HH24:MI:SS"+07:00';
+//             SQL="select a.start_time_iso,a.end_time_iso,a.combination,a.appointment_type_name,a.appointment_type_id,a.end_time,a.start_time,a.booking_date,a.product_id,a.product_name,a.ec_name,a.ec_id,"+
+//                 "sum(a.count_true) as jml,sum(a.count_false) as jml_false from (select CONCAT(z.name,'-',d.name,'-',e.name,'-',to_char(a.slot_date,'YYYY-MM-DD')) as combination,z.name as appointment_type_name,a.em_appointment_system_id,b.appointment_type_id,a.is_active as "+
+//                 "is_active_slot_time,to_char(a.end_time,'HH24:SS') as end_time,to_char(a.start_time,'HH24:SS') as start_time,"+
+//                 "to_char(a.end_time,'"+FORMAT_ISO+"') as end_time_iso,to_char(a.start_time,'"+FORMAT_ISO+"') as start_time_iso,"+
+//                 "a.id as slot_of_time_id,to_char(a.slot_date,'YYYY-MM-DD') as booking_date,e.id as product_id,e.name as product_name,"+
+//                 "d.name as ec_name,d.id as ec_id,case when a.is_active=true then 1 else 0 end as count_true,case when a.is_active=false then 1 else 0 end as count_false from slot_of_time a inner join x_emiproductschedule b on a.productschedule_id=b.id "+
+//                 "inner join res_company c on b.company_id=c.id inner join designation_designation d on b.designation_id=d.id "+
+//                 "inner join x_emiproduct e on b.x_emiproduct_id=e.id inner join appointment_type f on b.appointment_type_id=f.id "+
+//                 "inner join appointment_type z on b.appointment_type_id=z.id"+
+//                 " where e.id="+product_id_param+" and d.id="+ec_id_param+" and a.slot_date between '"+start_date_param+"' and '"+end_date_param+"' "+
+//                 //"and b.appointment_type_id="+appointment_type_id_param+" and a.is_active=true and b.is_active=true"+
+//                 "and b.appointment_type_id="+appointment_type_id_param+" and b.is_active=true"+
+//                 ") a group by a.start_time_iso,a.end_time_iso,a.combination,a.appointment_type_name,a.appointment_type_id,a.end_time,a.start_time,a.booking_date, a.product_id,a.product_name,a.ec_name,a.ec_id order by a.start_time;"
+//             console.log(SQL);
             
-            //return;
-            let ecs = await client.query(SQL, function(err,rows) {
+//             //return;
+//             let ecs = await client.query(SQL, function(err,rows) {
 
-              if(!err) {
-                   // res.json(data.rows);
-
-
-
-                               const arr = rows.rows;
-
-                              var scheme = {
-                                  "$group[ec_ev_type_date](combination)": {
-                                    "ec_id": "ec_id",
-                                    "ec_name": "ec_name",
-                                    "product_id": "product_id",
-                                    "product_name": "product_name",
-                                    "appointment_type_id": "appointment_type_id",
-                                    "appointment_type_name": "appointment_type_name",
-                                    "booking_date": "booking_date",
-
-                                    "$group[start_time_s](start_time)": {
-                                      "start_time": "start_time",
-                                      "end_time": "end_time",
-                                      "start_time_iso": "start_time_iso",
-                                      "end_time_iso": "end_time_iso",
-                                     "count": "jml",
-                                     "count_false": "jml_false"
-                                    }
-                                  }
-                                };
-                                console.log(shape.parse(arr, scheme));
-                              res.json(shape.parse(arr, scheme));
-                              res.end();
+//               if(!err) {
+//                    // res.json(data.rows);
 
 
-                } else {
-                  console.log(err);
-              }
 
-            });
-            } catch (error) {
-              res.status(500).json({error: error.message});
-            }
+//                                const arr = rows.rows;
+
+//                               var scheme = {
+//                                   "$group[ec_ev_type_date](combination)": {
+//                                     "ec_id": "ec_id",
+//                                     "ec_name": "ec_name",
+//                                     "product_id": "product_id",
+//                                     "product_name": "product_name",
+//                                     "appointment_type_id": "appointment_type_id",
+//                                     "appointment_type_name": "appointment_type_name",
+//                                     "booking_date": "booking_date",
+
+//                                     "$group[start_time_s](start_time)": {
+//                                       "start_time": "start_time",
+//                                       "end_time": "end_time",
+//                                       "start_time_iso": "start_time_iso",
+//                                       "end_time_iso": "end_time_iso",
+//                                      "count": "jml",
+//                                      "count_false": "jml_false"
+//                                     }
+//                                   }
+//                                 };
+//                                 console.log(shape.parse(arr, scheme));
+//                               res.json(shape.parse(arr, scheme));
+//                               res.end();
+
+
+//                 } else {
+//                   console.log(err);
+//               }
+
+//             });
+//             } catch (error) {
+//               res.status(500).json({error: error.message});
+//             }
   
     
-    }
-  });
-});
+//     }
+//   });
+// });
 
 
-app.get('/api/v1/booking-testdrive/get-available-timeslot/:appointment_type_id_param/:product_id_param/:ec_id_param/:booking_date_param', verifyToken,async function (req, res) {  
-  jwt.verify(req.token, 'secretkey', async function (err, authData) {
-    if(err) {
-      res.sendStatus(403);
-    } else {
+// app.get('/api/v1/booking-testdrive/get-available-timeslot/:appointment_type_id_param/:product_id_param/:ec_id_param/:booking_date_param', verifyToken,async function (req, res) {  
+//   jwt.verify(req.token, 'secretkey', async function (err, authData) {
+//     if(err) {
+//       res.sendStatus(403);
+//     } else {
       
-        try {
-            appointment_type_id_param = req.params.appointment_type_id_param;
-            booking_date_param = req.params.booking_date_param;
-            ec_id_param = req.params.ec_id_param;
-            product_id_param = req.params.product_id_param;
+//         try {
+//             appointment_type_id_param = req.params.appointment_type_id_param;
+//             booking_date_param = req.params.booking_date_param;
+//             ec_id_param = req.params.ec_id_param;
+//             product_id_param = req.params.product_id_param;
             
 
 
-            if (isNaN(appointment_type_id_params)) 
-                        {
-                          res.status(500).json({error: 'Error'});
-                          return;
-                        }
+//             if (isNaN(appointment_type_id_params)) 
+//                         {
+//                           res.status(500).json({error: 'Error'});
+//                           return;
+//                         }
 
-            //console.log(req.cookies);
-            let s_category = req.body.category;
-            let s_key = req.body.key;
-            let SQL = "";
+//             //console.log(req.cookies);
+//             let s_category = req.body.category;
+//             let s_key = req.body.key;
+//             let SQL = "";
             
-            SQL="select z.name as appointment_type_name,a.em_appointment_system_id,b.appointment_type_id,a.is_active as is_active_slot_time,to_char(a.end_time,'HH:SS') as end_time,to_char(a.start_time,'HH:SS') as start_time,a.id as slot_of_time_id,to_char(a.slot_date,'YYYY-MM-DD') as booking_date,e.id as product_id,e.name as product_name,d.name as ec_name,"+
-                    "d.id as ec_id from slot_of_time a inner join "+
-                    "x_emiproductschedule b on a.productschedule_id=b.id inner join res_company c on b.company_id=c.id inner join designation_designation d on "+
-                    "b.designation_id=d.id inner join x_emiproduct e on b.x_emiproduct_id=e.id inner join appointment_type f on b.appointment_type_id=f.id inner join appointment_type z on b.appointment_type_id=z.id "+
-                    "where d.id="+ec_id_param+" and a.slot_date='"+booking_date_param+"' and b.appointment_type_id="+appointment_type_id_param+";"
-            console.log(SQL);
-            let ecs = await client.query(SQL, function(err,rows) {
+//             SQL="select z.name as appointment_type_name,a.em_appointment_system_id,b.appointment_type_id,a.is_active as is_active_slot_time,to_char(a.end_time,'HH:SS') as end_time,to_char(a.start_time,'HH:SS') as start_time,a.id as slot_of_time_id,to_char(a.slot_date,'YYYY-MM-DD') as booking_date,e.id as product_id,e.name as product_name,d.name as ec_name,"+
+//                     "d.id as ec_id from slot_of_time a inner join "+
+//                     "x_emiproductschedule b on a.productschedule_id=b.id inner join res_company c on b.company_id=c.id inner join designation_designation d on "+
+//                     "b.designation_id=d.id inner join x_emiproduct e on b.x_emiproduct_id=e.id inner join appointment_type f on b.appointment_type_id=f.id inner join appointment_type z on b.appointment_type_id=z.id "+
+//                     "where d.id="+ec_id_param+" and a.slot_date='"+booking_date_param+"' and b.appointment_type_id="+appointment_type_id_param+";"
+//             console.log(SQL);
+//             let ecs = await client.query(SQL, function(err,rows) {
 
-              if(!err) {
-                   // res.json(data.rows);
-
-
-
-                               const arr = rows.rows;
-
-                              var scheme = {
-                                  "$group[ec_locations](ec_id)": {
-                                    "ec_id": "ec_id",
-                                    "ec_name": "ec_name",
-                                    "product_id": "product_id",
-                                    "product_name": "product_name",
-                                    "appointment_type_id": "appointment_type_id",
-                                    "appointment_type_name": "appointment_type_name",
-                                    "booking_date": "booking_date",
-
-                                    "$group[slot_time_ids](slot_of_time_id)": {
-                                      "slot_of_time_id": "slot_of_time_id",
-                                      "start_time": "start_time",
-                                      "end_time": "end_time",
-                                      "is_active_slot_time": "is_active_slot_time",
-                                      "booking_id": "em_appointment_system_id"
-                                    }
-                                  }
-                                };
-                                console.log(shape.parse(arr, scheme));
-                              res.json(shape.parse(arr, scheme));
-                              res.end();
+//               if(!err) {
+//                    // res.json(data.rows);
 
 
-                } else {
-                  console.log(err);
-              }
 
-            });
-            } catch (error) {
-              res.status(500).json({error: error.message});
-            }
+//                                const arr = rows.rows;
+
+//                               var scheme = {
+//                                   "$group[ec_locations](ec_id)": {
+//                                     "ec_id": "ec_id",
+//                                     "ec_name": "ec_name",
+//                                     "product_id": "product_id",
+//                                     "product_name": "product_name",
+//                                     "appointment_type_id": "appointment_type_id",
+//                                     "appointment_type_name": "appointment_type_name",
+//                                     "booking_date": "booking_date",
+
+//                                     "$group[slot_time_ids](slot_of_time_id)": {
+//                                       "slot_of_time_id": "slot_of_time_id",
+//                                       "start_time": "start_time",
+//                                       "end_time": "end_time",
+//                                       "is_active_slot_time": "is_active_slot_time",
+//                                       "booking_id": "em_appointment_system_id"
+//                                     }
+//                                   }
+//                                 };
+//                                 console.log(shape.parse(arr, scheme));
+//                               res.json(shape.parse(arr, scheme));
+//                               res.end();
+
+
+//                 } else {
+//                   console.log(err);
+//               }
+
+//             });
+//             } catch (error) {
+//               res.status(500).json({error: error.message});
+//             }
   
     
-    }
-  });
-});
+//     }
+//   });
+// });
 
-app.get('/api/v1/booking-testdrive/get-available-timeslot-ec', verifyToken,async function (req, res) {  
-  jwt.verify(req.token, 'secretkey', async function (err, authData) {
-    if(err) {
-      res.sendStatus(403);
-    } else {
+// app.get('/api/v1/booking-testdrive/get-available-timeslot-ec', verifyToken,async function (req, res) {  
+//   jwt.verify(req.token, 'secretkey', async function (err, authData) {
+//     if(err) {
+//       res.sendStatus(403);
+//     } else {
       
-        try {
-            id = req.params.id;
-            type_id = req.params.type_id;
+//         try {
+//             id = req.params.id;
+//             type_id = req.params.type_id;
             
 
-            if (isNaN(id)) 
-                        {
-                          res.status(500).json({error: 'Error'});
-                          return;
-                        }
+//             if (isNaN(id)) 
+//                         {
+//                           res.status(500).json({error: 'Error'});
+//                           return;
+//                         }
 
-            //console.log(req.cookies);
-            let s_category = req.body.category;
-            let s_key = req.body.key;
-            let SQL = "";
+//             //console.log(req.cookies);
+//             let s_category = req.body.category;
+//             let s_key = req.body.key;
+//             let SQL = "";
             
-              SQL ="select to_char(a.slot_date,'YYYY-MM-DD') as booking_date,e.id as product_testdrive_id,"+
-                    "d.id as ec_id from slot_of_time a inner join "+ 
-                    "x_emiproductschedule b on a.productschedule_id=b.id inner join res_company c on b.company_id=c.id inner join designation_designation d on "+
-                    "b.designation_id=d.id inner join x_emiproduct e on b.x_emiproduct_id=e.id inner join appointment_type f on b.appointment_type_id=f.id "+
-                    "where a.is_active=true and b.is_active=true and a.em_appointment_system_id is null and b.appointment_type_id=1 group by a.slot_date,e.id,d.id;";
-            console.log(SQL);
-            let ecs = await client.query(SQL, function(err,data) {
+//               SQL ="select to_char(a.slot_date,'YYYY-MM-DD') as booking_date,e.id as product_testdrive_id,"+
+//                     "d.id as ec_id from slot_of_time a inner join "+ 
+//                     "x_emiproductschedule b on a.productschedule_id=b.id inner join res_company c on b.company_id=c.id inner join designation_designation d on "+
+//                     "b.designation_id=d.id inner join x_emiproduct e on b.x_emiproduct_id=e.id inner join appointment_type f on b.appointment_type_id=f.id "+
+//                     "where a.is_active=true and b.is_active=true and a.em_appointment_system_id is null and b.appointment_type_id=1 group by a.slot_date,e.id,d.id;";
+//             console.log(SQL);
+//             let ecs = await client.query(SQL, function(err,data) {
 
-              if(!err) {
-                    res.json(data.rows);
-                } else {
-                  console.log(err);
-              }
+//               if(!err) {
+//                     res.json(data.rows);
+//                 } else {
+//                   console.log(err);
+//               }
 
-            });
-            } catch (error) {
-              res.status(500).json({error: error.message});
-            }
+//             });
+//             } catch (error) {
+//               res.status(500).json({error: error.message});
+//             }
   
     
-    }
-  });
-});
+//     }
+//   });
+// });
 
 
-app.get('/api/v1/allavailabletimeslot/:type_id/:id', verifyToken,async function (req, res) {  
-  jwt.verify(req.token, 'secretkey', async function (err, authData) {
-    if(err) {
-      res.sendStatus(403);
-    } else {
+// app.get('/api/v1/allavailabletimeslot/:type_id/:id', verifyToken,async function (req, res) {  
+//   jwt.verify(req.token, 'secretkey', async function (err, authData) {
+//     if(err) {
+//       res.sendStatus(403);
+//     } else {
       
-        try {
-            id = req.params.id;
-            type_id = req.params.type_id;
+//         try {
+//             id = req.params.id;
+//             type_id = req.params.type_id;
             
 
-            if (isNaN(id)) 
-                        {
-                          res.status(500).json({error: 'Error'});
-                          return;
-                        }
+//             if (isNaN(id)) 
+//                         {
+//                           res.status(500).json({error: 'Error'});
+//                           return;
+//                         }
 
-            //console.log(req.cookies);
-            let s_category = req.body.category;
-            let s_key = req.body.key;
-            let SQL = "";
-            if (id==0)
-            {
+//             //console.log(req.cookies);
+//             let s_category = req.body.category;
+//             let s_key = req.body.key;
+//             let SQL = "";
+//             if (id==0)
+//             {
               
-              SQL ="select a.id as timeslot_id,to_char(a.slot_date,'YYYY-MM-DD') as booking_date,e.id as product_testdrive_id,e.product_code as product_testdrive_code,e.name as product_testdrive_name,to_char(a.start_time,'YYYY-MM-DD HH24:MI:SS') as booking_start_time,to_char(a.end_time,'YYYY-MM-DD HH24:MI:SS') as booking_end_time,"+
-                    "d.id as ec_id,d.name as ec_name,c.name  as company_name,c.id as company_id,b.appointment_type_id as booking_type_id,f.name as booking_type_name,d.designation_latitude as ec_latitude,d.designation_longitude as ec_longitude,d.operational_hours,d.email_pic as ec_email_pic from slot_of_time a inner join "+ 
-                    "x_emiproductschedule b on a.productschedule_id=b.id inner join res_company c on b.company_id=c.id inner join designation_designation d on "+
-                    "b.designation_id=d.id inner join x_emiproduct e on b.x_emiproduct_id=e.id inner join appointment_type f on b.appointment_type_id=f.id "+
-                    "where a.is_active=true and b.is_active=true and a.em_appointment_system_id is null and b.appointment_type_id="+type_id+";";
+//               SQL ="select a.id as timeslot_id,to_char(a.slot_date,'YYYY-MM-DD') as booking_date,e.id as product_testdrive_id,e.product_code as product_testdrive_code,e.name as product_testdrive_name,to_char(a.start_time,'YYYY-MM-DD HH24:MI:SS') as booking_start_time,to_char(a.end_time,'YYYY-MM-DD HH24:MI:SS') as booking_end_time,"+
+//                     "d.id as ec_id,d.name as ec_name,c.name  as company_name,c.id as company_id,b.appointment_type_id as booking_type_id,f.name as booking_type_name,d.designation_latitude as ec_latitude,d.designation_longitude as ec_longitude,d.operational_hours,d.email_pic as ec_email_pic from slot_of_time a inner join "+ 
+//                     "x_emiproductschedule b on a.productschedule_id=b.id inner join res_company c on b.company_id=c.id inner join designation_designation d on "+
+//                     "b.designation_id=d.id inner join x_emiproduct e on b.x_emiproduct_id=e.id inner join appointment_type f on b.appointment_type_id=f.id "+
+//                     "where a.is_active=true and b.is_active=true and a.em_appointment_system_id is null and b.appointment_type_id="+type_id+";";
                 
               
             
-            }
-            else
-            {
+//             }
+//             else
+//             {
 
-              SQL ="select a.id as timeslot_id,to_char(a.slot_date,'YYYY-MM-DD') as booking_date,e.id as product_testdrive_id,e.product_code as product_testdrive_code,e.name as product_testdrive_name,to_char(a.start_time,'YYYY-MM-DD HH24:MI:SS') as booking_start_time,to_char(a.end_time,'YYYY-MM-DD HH24:MI:SS') as booking_end_time,"+
-                    "d.id as ec_id,d.name as ec_name,c.name  as company_name,c.id as company_id,b.appointment_type_id as booking_type_id,f.name as booking_type_name,d.designation_latitude as ec_latitude,d.designation_longitude as ec_longitude,d.operational_hours,d.email_pic as ec_email_pic from slot_of_time a inner join "+ 
-                    "x_emiproductschedule b on a.productschedule_id=b.id inner join res_company c on b.company_id=c.id inner join designation_designation d on "+
-                    "b.designation_id=d.id inner join x_emiproduct e on b.x_emiproduct_id=e.id inner join appointment_type f on b.appointment_type_id=f.id "+
-                    "where a.is_active=true and b.is_active=true and a.em_appointment_system_id is null and b.appointment_type_id="+type_id+" and a.id="+id+";";
+//               SQL ="select a.id as timeslot_id,to_char(a.slot_date,'YYYY-MM-DD') as booking_date,e.id as product_testdrive_id,e.product_code as product_testdrive_code,e.name as product_testdrive_name,to_char(a.start_time,'YYYY-MM-DD HH24:MI:SS') as booking_start_time,to_char(a.end_time,'YYYY-MM-DD HH24:MI:SS') as booking_end_time,"+
+//                     "d.id as ec_id,d.name as ec_name,c.name  as company_name,c.id as company_id,b.appointment_type_id as booking_type_id,f.name as booking_type_name,d.designation_latitude as ec_latitude,d.designation_longitude as ec_longitude,d.operational_hours,d.email_pic as ec_email_pic from slot_of_time a inner join "+ 
+//                     "x_emiproductschedule b on a.productschedule_id=b.id inner join res_company c on b.company_id=c.id inner join designation_designation d on "+
+//                     "b.designation_id=d.id inner join x_emiproduct e on b.x_emiproduct_id=e.id inner join appointment_type f on b.appointment_type_id=f.id "+
+//                     "where a.is_active=true and b.is_active=true and a.em_appointment_system_id is null and b.appointment_type_id="+type_id+" and a.id="+id+";";
            
-            }
-            console.log(SQL);
-            let ecs = await client.query(SQL, function(err,data) {
+//             }
+//             console.log(SQL);
+//             let ecs = await client.query(SQL, function(err,data) {
 
-              if(!err) {
-                    res.json(data.rows);
-                } else {
-                  console.log(err);
-              }
+//               if(!err) {
+//                     res.json(data.rows);
+//                 } else {
+//                   console.log(err);
+//               }
 
-            });
-            } catch (error) {
-              res.status(500).json({error: error.message});
-            }
+//             });
+//             } catch (error) {
+//               res.status(500).json({error: error.message});
+//             }
   
     
-    }
-  });
-});
+//     }
+//   });
+// });
 
 
-app.post('/api/v1/saleorder/set-deliveryaddress', verifyToken,async function (req, res) {  
-  jwt.verify(req.token, 'secretkey', async function (err, authData) {
-    if(err) {
-      res.sendStatus(403);
-    } else {
+// app.post('/api/v1/saleorder/set-deliveryaddress', verifyToken,async function (req, res) {  
+//   jwt.verify(req.token, 'secretkey', async function (err, authData) {
+//     if(err) {
+//       res.sendStatus(403);
+//     } else {
       
-          try {
-    //console.log(req.cookies);
-    let s_a = "E";
-    let s_sale_order_id =req.body.sale_order_id;
-    let s_shipping_contact_id_ = req.body.shipping_contact_id_;
-    //let s_customer_id = req.body.customer_id;
-    //let s_contact_id = req.body.contact_id;
+//           try {
+//     //console.log(req.cookies);
+//     let s_a = "E";
+//     let s_sale_order_id =req.body.sale_order_id;
+//     let s_shipping_contact_id_ = req.body.shipping_contact_id_;
+//     //let s_customer_id = req.body.customer_id;
+//     //let s_contact_id = req.body.contact_id;
     
-    //console.log(req.body.name);
-    //  return;
+//     //console.log(req.body.name);
+//     //  return;
     
-        let SQL ="select fn_change_deliveryaddress ('E',"+s_sale_order_id+","+s_shipping_contact_id_+");";
-        console.log(SQL);
-        //console.log(SQL);
-        //return;
-        let users = await client.query(SQL);
+//         let SQL ="select fn_change_deliveryaddress ('E',"+s_sale_order_id+","+s_shipping_contact_id_+");";
+//         console.log(SQL);
+//         //console.log(SQL);
+//         //return;
+//         let users = await client.query(SQL);
         
-    //console.log(users); 
-    //res.send(users);
-    //res.json({
-    //users
-    //message: 'Post Inserted...'
-    //});
+//     //console.log(users); 
+//     //res.send(users);
+//     //res.json({
+//     //users
+//     //message: 'Post Inserted...'
+//     //});
 
-    let sreturn = users.rows[0].fn_change_deliveryaddress;
-        let  myArray = sreturn.split("|");
-         //res.json({returnmessage : sreturn});
-    const saleorder = {
-    code: myArray[0],
-    message: myArray[1],
-    id: myArray[2]
-  }
+//     let sreturn = users.rows[0].fn_change_deliveryaddress;
+//         let  myArray = sreturn.split("|");
+//          //res.json({returnmessage : sreturn});
+//     const saleorder = {
+//     code: myArray[0],
+//     message: myArray[1],
+//     id: myArray[2]
+//   }
 
-    // res.end(JSON.stringify(users)); 
-    res.json({saleorder : saleorder});
-  } catch (error) {
-    res.status(500).json({error: error.message});
-  }
+//     // res.end(JSON.stringify(users)); 
+//     res.json({saleorder : saleorder});
+//   } catch (error) {
+//     res.status(500).json({error: error.message});
+//   }
   
     
-    }
-  });
-});
+//     }
+//   });
+// });
 
 
 
-app.post('/api/v1/saleorder/deliveryoptions', verifyToken,async function (req, res) {  
-  jwt.verify(req.token, 'secretkey', async function (err, authData) {
-    if(err) {
-      res.sendStatus(403);
-    } else {
+// app.post('/api/v1/saleorder/deliveryoptions', verifyToken,async function (req, res) {  
+//   jwt.verify(req.token, 'secretkey', async function (err, authData) {
+//     if(err) {
+//       res.sendStatus(403);
+//     } else {
       
-          try {
-    //console.log(req.cookies);
-    let s_a = "E";
-    let s_so_id =req.body.order_id;
-    let s_deliveryoption_id = req.body.deliveryoption_id;
-    //let s_customer_id = req.body.customer_id;
-    let s_contact_id = req.body.contact_id;
+//           try {
+//     //console.log(req.cookies);
+//     let s_a = "E";
+//     let s_so_id =req.body.order_id;
+//     let s_deliveryoption_id = req.body.deliveryoption_id;
+//     //let s_customer_id = req.body.customer_id;
+//     let s_contact_id = req.body.contact_id;
     
-    //console.log(req.body.name);
-    //  return;
+//     //console.log(req.body.name);
+//     //  return;
     
-        let SQL ="select fn_change_deliveryoptions ('E',"+s_so_id+","+s_deliveryoption_id+");";
-        console.log(SQL);
-        //console.log(SQL);
-        //return;
-        let users = await client.query(SQL);
+//         let SQL ="select fn_change_deliveryoptions ('E',"+s_so_id+","+s_deliveryoption_id+");";
+//         console.log(SQL);
+//         //console.log(SQL);
+//         //return;
+//         let users = await client.query(SQL);
         
-    //console.log(users); 
-    //res.send(users);
-    //res.json({
-    //users
-    //message: 'Post Inserted...'
-    //});
+//     //console.log(users); 
+//     //res.send(users);
+//     //res.json({
+//     //users
+//     //message: 'Post Inserted...'
+//     //});
 
-    let sreturn = users.rows[0].fn_change_deliveryoptions;
-        let  myArray = sreturn.split("|");
-         //res.json({returnmessage : sreturn});
-    const saleorder = {
-    code: myArray[0],
-    message: myArray[1],
-    id: myArray[2]
-  }
+//     let sreturn = users.rows[0].fn_change_deliveryoptions;
+//         let  myArray = sreturn.split("|");
+//          //res.json({returnmessage : sreturn});
+//     const saleorder = {
+//     code: myArray[0],
+//     message: myArray[1],
+//     id: myArray[2]
+//   }
 
-    // res.end(JSON.stringify(users)); 
-    res.json({saleorder : saleorder});
-  } catch (error) {
-    res.status(500).json({error: error.message});
-  }
+//     // res.end(JSON.stringify(users)); 
+//     res.json({saleorder : saleorder});
+//   } catch (error) {
+//     res.status(500).json({error: error.message});
+//   }
   
     
-    }
-  });
-});
+//     }
+//   });
+// });
 
 
-app.post('/api/v1/booking-testdrive/reschedule', verifyToken,async function (req, res) {  
-  jwt.verify(req.token, 'secretkey', async function (err, authData) {
-    if(err) {
-      res.sendStatus(403);
-    } else {
+// app.post('/api/v1/booking-testdrive/reschedule', verifyToken,async function (req, res) {  
+//   jwt.verify(req.token, 'secretkey', async function (err, authData) {
+//     if(err) {
+//       res.sendStatus(403);
+//     } else {
       
-          try {
-    //console.log(req.cookies);
-    let s_a = "E";
-    let i_booking_id =req.body.booking_id;
-    let s_slot_of_time_id = req.body.slot_of_time_id;
-    //let s_customer_id = req.body.customer_id;
-    let s_update_by = req.body.update_by;
+//           try {
+//     //console.log(req.cookies);
+//     let s_a = "E";
+//     let i_booking_id =req.body.booking_id;
+//     let s_slot_of_time_id = req.body.slot_of_time_id;
+//     //let s_customer_id = req.body.customer_id;
+//     let s_update_by = req.body.update_by;
     
-    //console.log(req.body.name);
-    //  return;
+//     //console.log(req.body.name);
+//     //  return;
     
-        let SQL ="select sp_booking_testdrive_reschedule ('"+s_a+"',"+i_booking_id+","+s_slot_of_time_id+",'"+s_update_by+"');";
-        console.log(SQL);
-        //console.log(SQL);
-        //return;
-        let users = await client.query(SQL);
+//         let SQL ="select sp_booking_testdrive_reschedule ('"+s_a+"',"+i_booking_id+","+s_slot_of_time_id+",'"+s_update_by+"');";
+//         console.log(SQL);
+//         //console.log(SQL);
+//         //return;
+//         let users = await client.query(SQL);
         
-    //console.log(users); 
-    //res.send(users);
-    //res.json({
-    //users
-    //message: 'Post Inserted...'
-    //});
+//     //console.log(users); 
+//     //res.send(users);
+//     //res.json({
+//     //users
+//     //message: 'Post Inserted...'
+//     //});
 
-    let sreturn = users.rows[0].sp_booking_testdrive_reschedule;
-        let  myArray = sreturn.split("|");
-         //res.json({returnmessage : sreturn});
-    const booking = {
-    code: myArray[0],
-    message: myArray[1],
-    id: myArray[2]
-  }
+//     let sreturn = users.rows[0].sp_booking_testdrive_reschedule;
+//         let  myArray = sreturn.split("|");
+//          //res.json({returnmessage : sreturn});
+//     const booking = {
+//     code: myArray[0],
+//     message: myArray[1],
+//     id: myArray[2]
+//   }
 
-    // res.end(JSON.stringify(users)); 
-    res.json({booking : booking});
-  } catch (error) {
-    res.status(500).json({error: error.message});
-  }
+//     // res.end(JSON.stringify(users)); 
+//     res.json({booking : booking});
+//   } catch (error) {
+//     res.status(500).json({error: error.message});
+//   }
   
     
-    }
-  });
-});
+//     }
+//   });
+// });
 
 
-app.post('/api/v2/booking-testdrive/cancel', verifyToken,async function (req, res) {  
-  jwt.verify(req.token, 'secretkey', async function (err, authData) {
-    if(err) {
-      res.sendStatus(403);
-      //const booking = {
-      //  code: "1",
-      //  message: "Forbidden",
-      //  id: "0"
-      //}
-      //var data = {
-      //  'status':403,
-      //  'values':booking
-    //};
-    //res.json(data);
-    } else {
+// app.post('/api/v2/booking-testdrive/cancel', verifyToken,async function (req, res) {  
+//   jwt.verify(req.token, 'secretkey', async function (err, authData) {
+//     if(err) {
+//       res.sendStatus(403);
+//       //const booking = {
+//       //  code: "1",
+//       //  message: "Forbidden",
+//       //  id: "0"
+//       //}
+//       //var data = {
+//       //  'status':403,
+//       //  'values':booking
+//     //};
+//     //res.json(data);
+//     } else {
       
-          try {
-    //console.log(req.cookies);
-    let s_a = "C";
-    let i_booking_id =req.body.booking_id;
-    let s_cancel_category_id = req.body.cancel_category_id;
-    let s_cancel_comment = req.body.cancel_comment;
-    let s_update_by = req.body.update_by;
+//           try {
+//     //console.log(req.cookies);
+//     let s_a = "C";
+//     let i_booking_id =req.body.booking_id;
+//     let s_cancel_category_id = req.body.cancel_category_id;
+//     let s_cancel_comment = req.body.cancel_comment;
+//     let s_update_by = req.body.update_by;
     
-    //console.log(req.body.name);
-    //  return;
+//     //console.log(req.body.name);
+//     //  return;
     
-        let SQL ="select fn_booking_testdrive_cancel_v2 ('"+s_a+"',"+i_booking_id+","+s_cancel_category_id+",'"+s_cancel_comment+"','"+s_update_by+"');";
-        console.log(SQL);
-        //return;
-        let users = await client.query(SQL);
+//         let SQL ="select fn_booking_testdrive_cancel_v2 ('"+s_a+"',"+i_booking_id+","+s_cancel_category_id+",'"+s_cancel_comment+"','"+s_update_by+"');";
+//         console.log(SQL);
+//         //return;
+//         let users = await client.query(SQL);
         
-    //console.log(users); 
-    //res.send(users);
-    //res.json({
-    //users
-    //message: 'Post Inserted...'
-    //});
+//     //console.log(users); 
+//     //res.send(users);
+//     //res.json({
+//     //users
+//     //message: 'Post Inserted...'
+//     //});
 
-    let sreturn = users.rows[0].fn_booking_testdrive_cancel_v2;
-        let  myArray = sreturn.split("|");
-         //res.json({returnmessage : sreturn});
-    const booking = {
-    code: myArray[0],
-    message: myArray[1],
-    id: myArray[2],
-    productId: myArray[3]
-    ,
-    productName: myArray[4],
-    bookingId: myArray[2],
-    bookingCode: myArray[5],
-    date: myArray[6],
-    startTime: myArray[7],
-    endTime: myArray[8],
-    ecId: myArray[9],
-    ecName: myArray[10],
-    ecAddress: myArray[11],
-    ecLongitude: myArray[13],
-    ecLatitude: myArray[12],
-    ecCity: myArray[14],
-    ecState: myArray[15],
-    ecCountry: myArray[16],
-    ecOperationalHours: myArray[17],
-    CancelCategoryID : myArray[18],
-    CancelCategoryText : myArray[19],
-    Comment : myArray[20],
-    CancelDate : myArray[21],
+//     let sreturn = users.rows[0].fn_booking_testdrive_cancel_v2;
+//         let  myArray = sreturn.split("|");
+//          //res.json({returnmessage : sreturn});
+//     const booking = {
+//     code: myArray[0],
+//     message: myArray[1],
+//     id: myArray[2],
+//     productId: myArray[3]
+//     ,
+//     productName: myArray[4],
+//     bookingId: myArray[2],
+//     bookingCode: myArray[5],
+//     date: myArray[6],
+//     startTime: myArray[7],
+//     endTime: myArray[8],
+//     ecId: myArray[9],
+//     ecName: myArray[10],
+//     ecAddress: myArray[11],
+//     ecLongitude: myArray[13],
+//     ecLatitude: myArray[12],
+//     ecCity: myArray[14],
+//     ecState: myArray[15],
+//     ecCountry: myArray[16],
+//     ecOperationalHours: myArray[17],
+//     CancelCategoryID : myArray[18],
+//     CancelCategoryText : myArray[19],
+//     Comment : myArray[20],
+//     CancelDate : myArray[21],
     
-    ecAddress2 : myArray[22],
-  }
+//     ecAddress2 : myArray[22],
+//   }
 
-    // res.end(JSON.stringify(users)); 
-    res.json({cancellation : booking});
-  } catch (error) {
-  res.status(500).json({error: error.message});
+//     // res.end(JSON.stringify(users)); 
+//     res.json({cancellation : booking});
+//   } catch (error) {
+//   res.status(500).json({error: error.message});
 
-   // var data = {
-   //     'status':500,
-   //     'values':booking
-   // };
-   // res.json(data);
-  }
+//    // var data = {
+//    //     'status':500,
+//    //     'values':booking
+//    // };
+//    // res.json(data);
+//   }
   
     
-    }
-  });
-});
+//     }
+//   });
+// });
 
 
 app.post('/api/v1/booking-testdrive/cancel', verifyToken,async function (req, res) {  
@@ -5331,61 +5321,61 @@ app.get('/api/v1/product/:id/:company_id', verifyToken,async function (req, res)
   });
 });
 
-app.get('/api/v1/booking-testdrive/list-percustomer/:partner_id', verifyToken,async function (req, res) {  
-  jwt.verify(req.token, 'secretkey', async function (err, authData) {
-    if(err) {
-      res.sendStatus(403);
-    } else {
+// app.get('/api/v1/booking-testdrive/list-percustomer/:partner_id', verifyToken,async function (req, res) {  
+//   jwt.verify(req.token, 'secretkey', async function (err, authData) {
+//     if(err) {
+//       res.sendStatus(403);
+//     } else {
       
-        try {
-            partner_id = req.params.partner_id;
-            //type_id = req.params.type_id;
+//         try {
+//             partner_id = req.params.partner_id;
+//             //type_id = req.params.type_id;
             
-            //console.log(req.cookies);
-            let s_category = req.body.category;
-            let s_key = req.body.key;
-            let SQL = "";
-              let FORMAT_ISO = 'YYYY-MM-DD"T"HH24:MI:SS"+07:00';
+//             //console.log(req.cookies);
+//             let s_category = req.body.category;
+//             let s_key = req.body.key;
+//             let SQL = "";
+//               let FORMAT_ISO = 'YYYY-MM-DD"T"HH24:MI:SS"+07:00';
 
 
 
-            if (isNaN(partner_id)) 
-                        {
-                          res.status(500).json({error: 'Error'});
-                          return;
-                        }
+//             if (isNaN(partner_id)) 
+//                         {
+//                           res.status(500).json({error: 'Error'});
+//                           return;
+//                         }
 
-              SQL ="select a.x_emiproduct_id as product_id,b.name as product_name,a.id as booking_id,"+         
-                    "a.name as booking_code,to_char(a.date,'YYYY-MM-DD') as date,to_char(c.start_time,'"+FORMAT_ISO+"') as start_time,"+
-                    "to_char(c.end_time,'"+FORMAT_ISO+"') as end_time,a.designation_id as ec_id,"+
-                    "d.name as ec_name,CONCAT(d.address,' ',d.address_2) as ec_address,d.designation_longitude as ec_longitude"+
-                    ",d.designation_latitude as ec_latitude,a.state as booking_status,to_char(a.x_cancel_date,'"+FORMAT_ISO+"') as cancel_date,a.reason as cancel_comment,"+
-                    "a.cancel_category_id,z.name as cancel_category_text,w.name as city_name,y.name as state_name,x.name as country_name,d.operational_hours "+
-                    "from em_appointment_system a inner join x_emiproduct b "+
-                    "on a.x_emiproduct_id=b.id left outer join slot_of_time c on a.slot_of_time_id=c.id "+
-                    "inner join designation_designation d on a.designation_id=d.id left outer join res_city e on d.city_id=e.id "+
-                    "inner join res_country_state y on d.state_id=y.id left outer join res_country x on d.country_id=x.id "+
-                    "left outer join x_cancelcategory z on a.cancel_category_id=z.id left outer join res_city w on d.city_id=w.id "+
-                    "where a.partner_id="+partner_id+";";
-            console.log(SQL);
-            //return;
-            let ecs = await client.query(SQL, function(err,data) {
+//               SQL ="select a.x_emiproduct_id as product_id,b.name as product_name,a.id as booking_id,"+         
+//                     "a.name as booking_code,to_char(a.date,'YYYY-MM-DD') as date,to_char(c.start_time,'"+FORMAT_ISO+"') as start_time,"+
+//                     "to_char(c.end_time,'"+FORMAT_ISO+"') as end_time,a.designation_id as ec_id,"+
+//                     "d.name as ec_name,CONCAT(d.address,' ',d.address_2) as ec_address,d.designation_longitude as ec_longitude"+
+//                     ",d.designation_latitude as ec_latitude,a.state as booking_status,to_char(a.x_cancel_date,'"+FORMAT_ISO+"') as cancel_date,a.reason as cancel_comment,"+
+//                     "a.cancel_category_id,z.name as cancel_category_text,w.name as city_name,y.name as state_name,x.name as country_name,d.operational_hours "+
+//                     "from em_appointment_system a inner join x_emiproduct b "+
+//                     "on a.x_emiproduct_id=b.id left outer join slot_of_time c on a.slot_of_time_id=c.id "+
+//                     "inner join designation_designation d on a.designation_id=d.id left outer join res_city e on d.city_id=e.id "+
+//                     "inner join res_country_state y on d.state_id=y.id left outer join res_country x on d.country_id=x.id "+
+//                     "left outer join x_cancelcategory z on a.cancel_category_id=z.id left outer join res_city w on d.city_id=w.id "+
+//                     "where a.partner_id="+partner_id+";";
+//             console.log(SQL);
+//             //return;
+//             let ecs = await client.query(SQL, function(err,data) {
 
-              if(!err) {
-                    res.json(data.rows);
-                } else {
-                  console.log(err);
-              }
+//               if(!err) {
+//                     res.json(data.rows);
+//                 } else {
+//                   console.log(err);
+//               }
 
-            });
-            } catch (error) {
-              res.status(500).json({error: error.message});
-            }
+//             });
+//             } catch (error) {
+//               res.status(500).json({error: error.message});
+//             }
   
     
-    }
-  });
-});
+//     }
+//   });
+// });
 
 
 app.get('/api/v1/booking-list-percustomer/:partner_id', verifyToken,async function (req, res) {  
@@ -5433,7 +5423,6 @@ app.get('/api/v1/booking-list-percustomer/:partner_id', verifyToken,async functi
     }
   });
 });
-
 
 
 app.post('/api/v2/dealer/getdefaultdealer', verifyToken,async function (req, res) {  
@@ -5792,8 +5781,6 @@ app.get('/api/v1/dealer/getlist-and-default/:customer_id/:lat/:long', verifyToke
 });
 
 
-
-
 app.post('/api/emica/customer', verifyToken,async function (req, res) {  
   jwt.verify(req.token, 'secretkey', async function (err, authData) {
     if(err) {
@@ -5846,6 +5833,7 @@ app.post('/api/emica/customer', verifyToken,async function (req, res) {
     }
   });
 });
+
 
 app.post('/api/v2/set-customer-ktp', verifyToken,async function (req, res) {  
   jwt.verify(req.token, 'secretkey', async function (err, authData) {
@@ -6132,7 +6120,6 @@ app.post('/api/v2/customer', verifyToken,async function (req, res) {
 });
 
 
-
 app.post('/api/emica/customer', verifyToken,async function (req, res) {  
   jwt.verify(req.token, 'secretkey', async function (err, authData) {
     if(err) {
@@ -6199,6 +6186,7 @@ app.post('/api/posts', verifyToken, (req, res) => {
     }
   });
 });
+
 
 app.post('/api/emi/login', (req, res) => {
 //  // Mock user
